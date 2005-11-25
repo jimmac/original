@@ -1,0 +1,76 @@
+Version 0.11
+------------
+
+  Convert script
+	--------------
+	- New scripts from Boris de Laage <bdelaage@free.fr> with
+	  more parameters, interactive mode, help and other goodies
+	- iPhoto->Original script (Stephen Gerstacker)
+
+	Web script
+	----------
+	- Localisation (partial fr and cs locales). Language taken from 
+	  UA's accept language. Based on patch by some good soul I can't 
+		seem to find the identity for.
+	- Security and polishing (Lennart Poettering and Stephan Poehlsen).
+
+
+Version 0.10
+------------
+
+  Convert script
+	--------------
+	
+	- I added unsharp mask & saturation boost.
+	- Thumbnails are stripped off EXIF tags. To do this for your existing
+		thumbnails, run `mogrify -strip thumbs/*jpg`. You'll gain a lot of space if
+		your exif header in the thumbnail includes a thumbnail (DOH). 
+	- Added a world writable flag to comments dir, since it's required for the
+		new feature - user comments.
+
+	* convert/contrib: moved all the funky scripts there, please help
+	me maintain them, patches very welcome.
+
+	Web scripts
+	-----------
+
+		- Implemented user comments based on a patch by Christian
+		  Troester. Had to add a simple form check since it was full of
+		  spam the next day. Eek.
+
+		- Added image access log (also needs comments dir writable)
+
+		- Added some formatting to the PHP4 EXIF data
+
+		- Cleaned up the default theme, now called dark. How original.
+		  The Previous/Next thumbnails have access keys (Alt+P, Alt+N).
+			The previews are top aligned so they don't jump depending on
+			the height of the image. If you don't like any of these, feel
+			free to use the old stylesheet. 
+			
+		- Moved the javascript to a separate file, wondered why IE
+		  suddenly prefers not to render page, then used <script></script>
+		  instead of <script />
+			
+		- Made it XHTML 1.0 Strict compilant, Didn't want to get rid of
+			the -moz-* CSS extensions, but apart from that and the IE's
+			Filter it's CSS2 compilant too. Classic and Gorilla don't use
+			them and are compilant.
+
+		- info.txt now accepts more date formats (You can even do
+			foolish things like "Today")
+
+	* info.txt.sample: Sample info.txt file to add metainfo to your
+			album as described in the README.
+
+
+version 0.9
+-----------
+* New default stylesheet. Is pwetty and doesn't crash IE, yay!
+* Optional per-gallery meta information.  Finally you can now edit a fancy name
+  (utf8), add a short description, specify author or override dir date.
+	More on this in the README.
+* Restricted Galleries (using info.txt). Note you need to make sure info.txt
+	isn't readable (imgconv generated an appropriate .htaccess)
+* Customizable sorting within month. $sortinmonth defines whether you want
+	theitems sorted alphabetically or descending date.

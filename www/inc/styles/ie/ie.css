@@ -1,0 +1,8 @@
+/* IE sucks; this is the only stylesheet doesn't crash it
+   this is low priority for me; if you want a nice stylesheet for IE
+   (if such thing can be written), please send a patch to jimmac@ximian.com
+*/
+
+body {
+   font-family: Verdana, Sans-Serif;
+}

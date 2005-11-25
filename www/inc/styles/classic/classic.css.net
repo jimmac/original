@@ -1,0 +1,386 @@
+/* Default stylesheet
+   ==================
+
+   stylesheet & artwork
+   (c) 2003 Jakub 'jimmac' Steiner
+
+*/
+
+body {
+   background-color: #f6f6f6;
+   background: url("bcg.png") top left repeat;
+   /*
+   margin: 0px 50px 0px 50px;
+   width: auto;
+   */
+   margin: auto;
+   width: 770px;
+   font-family: "Bitstream Vera Sans", sans-serif;
+   font-size: 10pt;
+}
+
+img {
+   border: 0px;
+	 width: 120px;
+	 height: 80px;
+}
+
+img#preview {
+	width: inherit;
+	height: inherit;
+}
+
+a.portrait img {
+	width: 58px;
+}
+
+a:link {
+   color: #909090;
+}
+
+a:visited {
+   color: #808080;
+}
+
+a:hover {
+   color: #f0f0f0;
+   background-color: #707070;
+}
+
+a.hascomments {
+	background-image: url('hascomments.png');
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+
+.month p>a {
+	display: block;
+}
+
+.author, .description, .date {
+	display: block;
+	padding: 2px 0px 1em 4px;
+}
+
+.date {
+	color: #666;
+}
+
+.date:before {
+	content: ">> ";
+}
+
+h1.title {
+   background-color: #a7a9a6;
+   font-size: 16pt;
+   color: #808080;
+   width: 100%;
+   margin-bottom: 0px;
+   padding: 5px;
+   
+}
+
+.title a {
+   display: block;
+	position:relative;
+	width:100%; 
+   height:48px;
+	margin:0; padding:0;
+}
+
+.title a:hover {
+   border: 0px;
+   background-color: #a7a9a6;
+}
+
+.title a span {
+   /* this overlays text below with an image */
+	display: block;
+	position:absolute; left:0; top:0; z-index:1; 
+	width:338px; height:48px;
+   margin:0; padding:0;
+	background-image: url("title.png");
+   background-position: top left;
+   background-repeat: no-repeat;
+}
+
+div.thumbroll {
+   margin: 10px 0px 4px 0px;
+   min-height: 29px;
+}
+
+p.bigthumbnails {
+   text-align: center;
+}
+
+p.bigthumbnails a {
+		display: block;
+		float: left;
+    padding: 0px 0px 18px 0px;
+    margin: 4px;
+    border: 0px;
+}
+
+p {
+	clear: both;
+}
+/*
+p.bigthumbnails a:link img {
+   border: 1px solid white;
+}
+
+p.bigthumbnails a:hover img {
+   border: 1px solid #909090;
+   
+}
+*/
+
+a#minus,a#plus {
+   display: block;
+	position: relative;
+   float: left;
+	width:24px; 
+   height:24px;
+	margin:0px; padding:0px;
+}
+
+a#minus {
+   background: url("minus.png") top left no-repeat;
+}
+
+a#plus {
+   background: url("plus.png") top left no-repeat;
+}
+
+a#zip {
+   /* display: block; */
+	position: relative;
+	width:16px; 
+   height:16px;
+	margin:0px; padding:0px;
+   font-size: 9px;
+}
+
+a#zip span {
+   background: url("zip.png") top left no-repeat;
+	position:absolute; left:0; top:0; z-index:1; 
+	width:16px; height:16px;
+}
+
+div.navigation {
+   background-color: #f6f6f6;
+   width: 100%;
+   padding: 5px;
+   font-size: 10px;
+}
+
+div.navigation a {
+   color: #a0a0a0;
+   font-weight: bold;
+}
+
+div.footer {
+   font-size: 9px;
+   width: 100%;
+   margin-top: 40px;
+   padding: 5px 5px 20px 5px;
+   clear: both;
+   border-top: 1px dotted #909090;
+}
+
+div.year {
+   font-size: 11pt;
+   float: left;
+   margin: 10px;
+}
+
+div.month {
+   margin: 0px 0px 0px 2em;
+   padding: 2px;
+}
+
+div.month h4 {
+   margin: 0px 0px 3px 0px;
+}
+
+/* ul won't work on safari with float: left */
+div.month p {
+   margin: 2px;
+   padding: 0px 0px 0px 6px;
+   list-style: none;
+   font-size: 10px;
+}
+
+div.month p.restricted {
+	background: transparent url("restricted.png") top left no-repeat;
+  padding: 0px 0px 3px 16px;
+}
+
+div#image {
+   /* width: 800px; */
+   display: block;
+   position: relative;
+   clear: both;
+   margin-left: auto;
+   margin-right: auto;
+   /* border: 1px solid black; */
+   min-height: 480px; /* only works in gecko :/ */
+}
+
+img#preview {
+   position: relative;
+   float: left;
+   margin-right: 8px;
+}
+
+div.comment {
+   margin: 2em 0px;
+   color: #808080;
+   font-size: 10pt;
+}
+
+div.comment span {
+   color: black;
+   font-weight: bold;
+}
+
+div.navbuttons {
+   position: absolute;
+   top: 580px; left: 50%;
+   margin-left: 260px; /* 260px to the right of the center of the page */
+   width: 64px; height: 32px;
+   z-index: 1;
+}
+
+div.navbuttonsshell {
+   position: relative;
+   width: 100%;
+   margin: 2px;
+}
+
+div.navbuttonsshell a#previcon {
+   display: block;
+   position: absolute;
+   width: 24px; height: 24px;
+   margin: 2px; padding: 0;
+   top: 0px;
+   left: 0px;
+   color: #f6f6f6;
+   font-size: 30px; /* make unreadable */
+   text-indent: 2em; /* push it off screen, since khtml doesn't do 0px fonts */
+   overflow: hidden; /* hide the oveflow text */
+	background: url("left.png") top left no-repeat; /* have a pixmap */
+}
+
+div.navbuttonsshell a#nexticon {
+   display: block;
+   position: absolute;
+   width: 24px; height: 24px;
+   margin: 2px 4px 2px auto; padding: 0;
+   right: 4px; top: 0px;
+   color: #f6f6f6;
+   font-size: 30px; /* make unreadable */
+   text-indent: 2em; /* push it off screen, since khtml doesn't do 0px fonts */
+   overflow: hidden; /* hide the overflow text */
+	background: url("right.png") top left no-repeat; /* have a pixmap */
+}
+
+
+div.prevthumb,div.nextthumb {
+   margin-bottom: 1em;
+}
+
+div.nextthumb a,div.prevthumb a {
+   text-decoration: none;
+	 background-color: transparent;
+}
+
+div.nextthumb a:hover,div.prevthumb a:hover {
+	 color: black;
+}
+
+div#mqhq {
+   margin: 2px 2px 4px 0px;
+   height: 32px;
+}
+
+div#mqhq a {
+   display: block;
+   border: 1px solid #909090;
+   padding: 2px;
+   font-size: 10px;
+   background-color: #f6f6f6;
+   color: black;
+   float: left;
+   width: 48px;
+   text-align: center;
+   margin: 2px;
+}
+
+div#mqhq a:hover {
+   background-color: #909090;
+   border: 1px solid black;
+   color: white;
+}
+
+div.stylenavbar {
+   position:relative;
+   font-size: 9px; 
+   margin: 4px 0px;
+   padding-bottom: 0px;
+}
+
+/* Formatting of the user comments */
+
+div#comment_block {
+	margin-bottom: 40px;
+}
+
+div#comment_form {
+	margin-top: 1em;
+}
+
+div.commentdata {
+	padding-left: 1em;
+	color: black;
+  margin-bottom: 2em;
+} 
+
+div.user_comment {
+  background-color: #f6f6f6;
+	padding: 4px;
+}
+
+div.name {
+	color: gray;
+  font-size: 9pt;
+  margin-bottom: 2px;
+}
+
+textarea, input {
+  font-family: "Bitstream Vera Sans", sans-serif;
+  font-size: 10pt;
+}
+
+input[type="text"],textarea {
+	width: 300px;
+}
+
+div.row {
+		margin-bottom: 1em;
+	}
+
+div.label {
+	margin-bottom: 4px;
+}
+
+div.label a {
+	text-decoration: none;
+	cursor: help;
+	color: black;
+	border-bottom: 1px dotted gray;
+}
+
+div.label a:hover {
+	background-color: transparent;
+}
