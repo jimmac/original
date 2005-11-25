@@ -1,0 +1,553 @@
+/* Default stylesheet
+   ==================
+
+	 The default stylesheet needed a remake. Photos 
+	 simply look better on dark background. The color
+	 scheme is derived form the Novell palette.
+
+	 Should not crash Internet Explorer anymore.
+	 
+   stylesheet & artwork
+   (c) 2004 Jakub 'jimmac' Steiner
+
+*/
+
+body {
+   /*
+   margin: 0px 50px 0px 50px;
+   width: auto;
+   */
+   margin: 20px 20px 20px 100px;
+   font-family: Georgia, "Bitstream Vera Sans", sans-serif;
+   font-size: 13pt;
+	 color: #eeeeec;
+	 background: #2e3436 url('title.png') top left no-repeat fixed;
+}
+
+img {
+   border: 0px;
+}
+
+a:link {
+   color: #ffb02f;
+}
+
+a:visited {
+   color: #e88000;
+}
+
+a:hover {
+   color: #ffcc7a;
+}
+
+
+h1.title {
+	display: none;
+}
+
+/* mini thumbnails */
+
+div.thumbroll {
+   margin: 10px 0px 4px 0px;
+   min-height: 29px;
+}
+
+div.thumbroll img {
+	border: 1px solid #6b6c69;
+	-moz-border-radius: 3px; 
+	Filter: Gray; /* IE only */
+}
+
+div.thumbroll a:hover img {
+	border: 1px solid #ffb02f;
+	Filter: none;
+}
+
+a#minus,a#plus {
+   display: block;
+	 position: relative;
+   float: left;
+	 width:16px; 
+   height:16px;
+	 margin:0px; padding:0px;
+}
+
+a#minus {
+   background: url("minus-inactive.png") top left no-repeat;
+}
+
+a#minus:hover {
+   background: url("minus.png") top left no-repeat;
+}
+
+a#plus {
+   background: url("plus-inactive.png") top left no-repeat;
+}
+
+a#plus:hover {
+   background: url("plus.png") top left no-repeat;
+}
+
+a#zip {
+   display: inline-block; 
+	 position: relative;
+	 width:16px; 
+   height:16px;
+	 margin:0px; padding:0px;
+   font-size: 9px;
+	 color: #2e3436;
+}
+
+a#zip span {
+   background: url("zip-inactive.png") top left no-repeat;
+	 position:absolute; left:0; top:0; z-index:1; 
+	 width:16px; height:16px;
+}
+
+a#zip:hover span {
+   background: url("zip.png") top left no-repeat;
+}
+
+.month p {
+	display: block;
+	width: 200px;
+}
+
+p span.desc, p span.author {
+	font-size: 10px;
+	margin-left: 5px;
+}
+
+.month p>a:after, p span.desc:after, p span.author:after {
+	content: ", ";
+}
+
+p span.date {
+	font-size: 9px;
+	margin-left: 5px;
+	color: #777;
+}
+
+/* in the thumbnail page */
+
+div#info {
+	margin-left: 6px;
+	padding-top: 6px;
+	clear: both;
+	font-size: 11px;
+}
+
+div#info span.key {
+	font-weight: bold;
+}
+
+p {
+	clear: both;
+}
+
+p.bigthumbnails {
+   text-align: left;
+}
+
+p.bigthumbnails a {
+	display: block;
+	float: left;
+	width: 130px;
+	height: 80px;
+	text-align: center;
+  padding: 30px 4px;
+	background-color: #232729;
+  margin: 4px;
+  border: 1px solid #6b6c69;
+	-moz-border-radius: 3px;
+	/* Neat, but too slow
+	opacity: .5; 	
+	 */
+	Filter: Gray; /* IE - I wish we had that in gecko */
+}
+
+p.bigthumbnails a.portrait {
+	padding: 10px 29px;
+	width: 80px;
+	height: 120px; /* why the extra pixels? */
+}
+
+p.bigthumbnails img {
+	/* landscapes */
+	 display: inline;
+	 width: 120px;
+	 height: 80px;
+}
+
+a.portrait img {
+	 /* portrait */
+	 width: 80px;
+	 height: 120px;
+}
+
+p.bigthumbnails a:hover {
+   background-color: #2b2c29;
+   margin: 3px;
+   border: 2px solid #ffb02f;
+	 Filter: none; /* IE */
+}
+
+a.hascomments {
+   background: #232729 url('hascomments.png') 95% 95% no-repeat;
+}
+
+div.navigation {
+    margin-top: 20px;
+    background-color: #5b5c59;
+    width: 100%;
+    padding:  5px;
+    font-size: 12px;
+    -moz-border-radius: 3px; 
+}
+
+div.navigation a:first-child {
+	padding-left: 24px;
+	background: url('home-inactive.png') top left no-repeat;
+}
+
+div.navigation a:first-child:hover {
+	background: url('home.png') top left no-repeat;
+}
+
+div.footer {
+   font-size: 11px;
+   width: 100%;
+   margin-top: 20px;
+   padding: 5px 5px 20px 5px;
+   clear: both;
+   border-top: 1px dotted #6b6c69;
+	 color: #6b6c69;
+}
+
+div.year {
+	color: #6b6c69;
+   font-size: 13pt;
+   float: left;
+   margin: 10px;
+}
+
+div.month {
+	color: #babdb6;
+   margin: 0px 0px 0px 2em;
+   padding: 2px;
+}
+
+div.month h4 {
+   margin: 10px 0px 5px 0px;
+}
+
+/* ul won't work on safari with float: left */
+div.month p {
+   margin: 2px;
+   padding: 4px 4px 6px 6px;
+   list-style: none;
+   font-size: 12px;
+	 border: 1px solid #444;
+	 -moz-border-radius: 5px;
+}
+
+div.month p.restricted>a {
+	background: transparent url("restricted-inactive.png") top left no-repeat;
+  padding: 0px 0px 3px 14px;
+}
+
+
+div.month p.restricted>a:hover {
+	background: transparent url("restricted.png") top left no-repeat;
+}
+
+div#image {
+   /* width: 800px; */
+   display: block;
+   position: relative;
+   clear: both;
+}
+
+img#preview {
+	 position: absolute;
+   top: 0px;
+   right: 0px;
+   bottom: 0px;
+   border: 10px solid #232729; 
+	 background-color: #6b6c69;
+	 padding: 1px;
+   -moz-border-radius: 7px; 
+   left: 0px;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+* html img#preview { /* should only match on IE; how pathetic */
+	margin-left: -320px;
+	left: 50%;
+}
+
+div.comment {
+   margin: 10px 0px 6px 0px;
+   color: #babdb6;
+   font-size: 11pt;
+	 /* max-width: 50em; */
+}
+
+div.comment span {
+   color: #6b6c69;
+   font-weight: bold;
+}
+
+div#log {
+	margin: 4px 0px 30px 0px;
+  font-size: 9pt;
+  color: #6b6c69;
+}
+
+div.navbuttons {
+   display: none;
+}
+
+div.prevthumb {
+	position: absolute;
+  margin-bottom: 1em;
+  font-size: 10px;
+  top: top;
+  left: 0px;
+  text-align: right;
+	padding: 4px;
+	/* background-color: #2e3436; */
+	background-color: #232729;
+  -moz-border-radius: 5px; 
+	opacity: .7; /* gecko, khtml */
+	filter: alpha(opacity=70); /* IE */
+}
+
+div.nextthumb {
+	position: absolute;
+  margin-bottom: 1em;
+	font-size: 10px;
+  right: 0px;
+  top: top;
+	margin-left: auto;
+	padding: 4px;
+	/* background-color: #2e3436; */
+	background-color: #232729;
+  -moz-border-radius: 5px; 
+	opacity: .7; /* gecko, khtml */
+	filter: alpha(opacity=70); /* IE */
+}
+
+div.nextthumb img, div.prevthumb img {
+	margin: 1px;
+	border: 1px solid #6b6c69;
+  -moz-border-radius: 3px; 
+}
+
+div.prevthumb a {
+	display: block;
+  text-decoration: none;
+	background: transparent url('left-inactive.png') bottom left no-repeat;
+	padding: 2px;
+}
+
+div.nextthumb a {
+	display: block;
+  text-decoration: none;
+	background: transparent url('right-inactive.png') bottom right no-repeat;
+	padding: 2px;
+}
+
+div.prevthumb a:hover {
+	background: transparent url('left.png') bottom left no-repeat;
+}
+
+div.nextthumb a:hover {
+	background: transparent url('right.png') bottom right no-repeat;
+}
+
+div.nextthumb a img,div.prevthumb a img {
+	Filter: Gray; /* IE - I wish we had that in gecko */
+}
+
+div.nextthumb a:hover img,div.prevthumb a:hover img {
+	border: 2px solid #ffb02f;
+	margin: 0px;
+	Filter: none;
+}
+
+.exif {
+	color: #555;
+	margin: 20px auto 30px auto;
+	font-size: 8pt;
+	width: auto;
+	text-align: center;
+}
+
+.exif tr td:first-child {
+	color: #babdb6;
+}
+
+.exif td + td {
+	text-align: left;
+}
+
+.exif span {
+	cursor: help;
+	border-bottom: 1px dotted #6b6c69;
+}
+
+.exif a {
+   color: #9f4000;
+}
+
+div#mqhq {
+   margin: 10px 2px 4px 0px;
+   height: 32px;
+}
+
+div#mqhq a {
+   display: block;
+   border: 2px solid #6b6c69;
+   padding: 2px;
+   font-size: 10px;
+   background-color: #ffb02f;
+   color: black;
+   float: left;
+   width: 48px;
+   text-align: center;
+   margin: 2px;
+   -moz-border-radius: 3px; 
+}
+
+div#mqhq a:hover {
+   background-color: #2e3436;
+   border: 2px solid #ffb02f;
+	 color: #ffb02f;
+}
+
+div.stylenavbar {
+   position:absolute;
+	 top: 0px;
+	 right: 0px;
+   font-size: 9px; 
+   padding: 4px;
+	 opacity: 0.4;
+}
+
+p.archives {
+	padding-top: 20px;
+	font-size: 9pt;
+	color: #444;
+}
+
+p.archives a {
+	padding-left: 20px;
+  background: transparent url("zip-inactive.png") top left no-repeat;
+	text-decoration: none;
+	padding-bottom: 2px;
+	border-bottom: 1px dotted #df900f;
+	opacity: 0.5;
+}
+
+p.archives a:hover {
+  background: transparent url("zip.png") top left no-repeat;
+	opacity: 1;
+}
+
+.accesskey {
+	text-decoration: underline;
+}
+/* Formatting of the user comment stuff */
+
+form {
+	 padding-bottom: 40px;
+	 clear: both;
+}
+
+form #comment_block {
+	 clear: both;
+   color: #ccc;
+   font-size: 10px;
+}
+
+#comment_block #showhideform {  
+    font-size: x-small;
+		margin-bottom: 10px;
+}
+
+#comment_form {
+	font-size: 9pt;
+	padding-top: 20px;
+	width: 420px;
+	margin-bottom: 20px;
+	-moz-border-radius: 3px; 
+}
+
+.row {
+	clear: both !important;
+}
+
+div.label {
+	float: left;
+	width: 110px;
+}
+
+.label a {
+	color: white;
+	cursor: help;
+	border-bottom: 1px dotted #6b6c69;
+	text-decoration: none;
+}
+	
+div.control {
+	padding: 4px;
+	float: right;
+	width: 270px;
+}
+
+div.user_comment {
+	clear: both;
+	margin-top: 40px;
+	background-color: #3a3a3a;
+	padding: 10px;
+	-moz-border-radius: 7px; 
+}
+
+div.user_comment div.commentdata {
+    margin: 10px;
+		font-size: 10pt;
+    margin-bottom: 20px;
+} 
+
+div.user_comment div.name {
+		color: #666;
+    font-size: 9pt;
+    margin-bottom: 2px;
+}
+div.user_comment div.name em {
+		font-weight: bold;
+}
+
+textarea, input[type="text"] {
+    font-family: Georgia, "Bitstream Vera Sans", sans-serif;
+    font-size: 9pt;
+    color: #eeeeec;
+    background-color: #5b5c59;
+    -moz-border-radius: 3px; 
+		border: 1px solid #888;
+		width: 100%;
+		padding: 4px;
+}
+input[type="submit"] {
+    -moz-border-radius: 3px; 
+		border: 1px solid #888;
+		padding: 4px;
+    background-color: #5b5c59;
+    font-family: Georgia, "Bitstream Vera Sans", sans-serif;
+    font-size: 10pt;
+    color: #eeeeec;
+}
+
+

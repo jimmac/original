@@ -1,0 +1,411 @@
+2005-01-19  Jakub Steiner <jimmac@ximian.com>
+
+	* index.php: check for comments dir writability. You can disable
+		comments per album by making comments not writable.
+	* inc/config.inc.php: add options to specify date segment to show
+		- ($yearsince, $yearto)
+
+2005-01-16  Jakub Steiner <jimmac@ximian.com>
+
+	Should update more often, or drop this in favour of NEWS, hmm
+
+	* convert/imgconv: added unsharp mask & saturation boost
+	thumbnails are stripped off EXIF tags. To do this for your
+	existing thumbnails, run `mogrify -strip thumbs/*jpg`. You'll gain
+	a lot of space if your exif header in the thumbnail includes a
+	thumbnail (DOH). Added a world writable flag to comments dir,
+	since it's required for the new feature - user comments.
+
+	* convert/contrib: moved all the funky scripts there, please help
+	me maintain them, patches very welcome.
+
+	* www/:
+		- Implemented user comments based on a patch by Christian
+		  Troester. Had to add a simple form check since it was full of
+		  spam the next day. Eek.
+
+		- Added image access log (also needs comments dir writable)
+
+		- Added some formatting to the PHP4 EXIF data
+
+		- Cleaned up the default theme, now called dark. How original.
+		  The Previous/Next thumbnails have access keys (Alt+P, Alt+N).
+			The previews are top aligned so they don't jump depending on
+			the height of the image. If you don't like any of these, feel
+			free to use the old stylesheet. 
+			
+		- Moved the javascript to a separate file, wondered why IE
+		  suddenly prefers not to render page, then used <script></script>
+		  instead of <script />
+			
+		- Made it XHTML 1.0 Strict compilant, Didn't want to get rid of
+			the -moz-* CSS extensions, but apart from that and the IE's
+			Filter it's CSS2 compilant too. Classic and Gorilla don't use
+			them and are compilant.
+
+		- info.txt now accepts more date formats (You can even do
+			foolish things like "Today")
+
+	* info.txt.sample: Sample info.txt file to add metainfo to your
+			album as described in the README.
+	
+2004-09-28  Jakub Steiner <jimmac@ximian.com>
+
+	* README:
+	* www/inc/header.inc.php:
+	* www/inc/www.class.inc.php:
+	* www/inc/config.inc.php: implement meta information loading (see README)
+	* www/inc/styles/default: new default style
+	
+	
+2004-02-16  Jakub Steiner <jimmac@ximian.com>
+
+	* www/inc/header.inc.php:
+	* www/inc/javascript.inc.php:
+	* www/inc/www.class.inc.php:
+	* www/inc/config.inc.php: make stylesheet selectable in the
+	  document (javascript dependent). Set a cookie so it gets stored
+	  across session.
+
+	* www/inc/stylesheet/ie/ie.css: dummy (doesn't crash IE)
+	* www/inc/stylesheet/default/default.css: doesn't jump in
+	  thumbnail view
+	* www/inc/stylesheet/gorilla/gorilla.css: implemented centering
+     of the image properly. First, I hacked up a gross javascript
+     kludge then figured a trivial solution with CSS. ehm
+	* www/index.php: solve tall images overlapping description by a
+     small inline style="" definition. This breaks CSS2 validity,
+     though?
+	  
+2004-01-10  Colin Marquardt  <colin@marquardt-home.de>
+
+	* convert/webgallery-zenity.pl: Quote $arg in system calls to
+	handle filenames with spaces.
+
+	* www/index.php, 
+       	www/inc/header.inc.php, 
+	www/inc/footer.inc.php, 
+	www/inc/www.class.inc.php, 
+	www/inc/funkce.inc.php: 
+	Make it validate with W3C. 
+	Make resulting HTML more readable.
+
+2003-12-15  Colin Marquardt  <colin@marquardt-home.de>
+
+	* convert/webgallery-zenity.pl: Set mtime of web-gallery directory
+	to the mtime of the first image with a good-looking time stamp.
+	Skip directories and non-image files.
+	Set autoflush for PROGRESS in a more readable way.
+	(make_dirs): Better error messages (show them to the user).	
+
+2003-12-07  Colin Marquardt  <colin@marquardt-home.de>
+
+	* convert/webgallery-zenity.pl: Use gdk-pixbuf-convert if
+	available, otherwise convert.  Make error messages more in spirit
+	of the HIG (zenity doesn't support Pango markup though?). Some
+	cleanup.
+	
+2003-11-02  Jakub Steiner <jimmac@ximian.com>
+
+	patch from Colin Marquardt  <colin@marquardt-home.de>:
+
+	* convert/gdk-pixbuf-convert.c: Add '-quality' switch.
+
+	* convert/webgallery-zenity.pl: Use new '-quality' switch. 
+	Make error messages nicer.
+
+2003-11-01  Jakub Steiner <jimmac@ximian.com>
+
+	* www/index.php
+	* www/inc/exif.inc.php
+	* www/inc/funkce.inc.php
+	* www/inc/www.class.inc.php: stylesheet & $gallery_dir updates
+
+	* www/inc/styles/gorilla/left.png
+	* www/inc/styles/gorilla/right.png
+	* www/inc/styles/gorilla/gorilla.css: stylesheet updates
+
+	* www/inc/styles/default/bcg.png
+	* www/inc/styles/default/default.css
+	* www/inc/styles/default/left-16.png
+	* www/inc/styles/default/left.png
+	* www/inc/styles/default/logo-mini.png
+	* www/inc/styles/default/minus.png
+	* www/inc/styles/default/plus.png
+	* www/inc/styles/default/right-16.png
+	* www/inc/styles/default/right.png
+	* www/inc/styles/default/title.png
+	* www/inc/styles/default/zip.png: default stylesheet (WIP)
+
+2003-10-27  Jakub Steiner <jimmac@ximian.com>
+
+	* www/inc/styles/gorilla/gorilla.css
+	* www/inc/styles/gorilla/minus.png
+	* www/inc/styles/gorilla/plus.png
+	* www/inc/styles/gorilla/title.png
+	* www/inc/header.inc.php
+	* www/index.php: more stylesheet work. _Some_ issues. Like
+	  killing IE6 *ehm* ;)
+	  
+	  I'll concentrate on doing the original stylesheet first and let
+	  my gorilla playground there for a while.
+
+2003-10-27  Jakub Steiner <jimmac@ximian.com>
+
+	* www/index.php:
+	* www/inc/funkce.inc.php: applied a patch from Mark, fixing
+	  issues with local relative paths
+
+	  Also fixed archive listing in the gallery thumbnail view.
+	
+2003-10-27  Jakub Steiner <jimmac@ximian.com>
+
+	* www/index.php: remove legacy style definitions
+
+2003-10-27  Mark Finlay   <sisob@tuxfamilyDOTorg>
+
+	* www/index.php: 
+	(Re)Add year sorting when generating the index page.
+
+2003-10-26  Jakub Steiner <jimmac@ximian.com>
+
+	* www/index.php
+	* www/inc/config.inc.php
+	* www/inc/footer.inc.php
+	* www/inc/funkce.inc.php
+	* www/inc/header.inc.php
+	* www/inc/www.class.inc.php: start breaking style and document
+	  structure apart. There will be multiple styles to choose from,
+	  including a plaintext one. The navigation and titlebar artwork
+	  will be implemented in CSS eventually so no php-fu for this
+	  will be required. 
+
+	  Because of this, the plaintext config option will go, since
+	  this will all be defined by using a specific stylesheet.
+
+	  Cleaned up the navigation() function.
+
+	  Header and footer are unfinished.
+
+	* www/inc/stylesheet.inc.css: removed global stylesheet
+	* www/inc/styles/gorilla/gorilla.css: sample Gorilla stylesheet.
+	  It will not be the default. It's just something to start with.
+	  The existing artwork will go to the stylesheet directory.
+	
+2003-10-26  Mark Finlay   <sisob@tuxfamilyDOTorg>
+
+	* www/index.php: 
+	Change datefile format in expectance
+	of supporting sorting by date of the 
+	month.
+
+2003-10-26  Mark Finlay   <sisob@tuxfamilyDOTorg>
+
+	* www/inc/config.inc.php:
+	Fix comment for $gallery_dir
+
+2003-10-26  Jakub Steiner <jimmac@ximian.com>
+
+	* www/index.php:
+	* www/inc/www.class.inc.php:
+	* www/inc/funkce.inc.php: implement $gallery_dir correctly
+
+2003-10-26  Jakub Steiner <jimmac@ximian.com>
+
+	* www/inc/config.inc.php: get rid of old gallery listing
+
+	* www/inc/www.class.inc.php: rename the SortedDir() function to
+	  be the constructor (easier-to-read code).
+	
+	* www/index.php: used spaces instead of tabs, the indentation
+	  looked weird (3 spaces == 1 tab) 
+	
+2003-10-26  Jakub Steiner <jimmac@ximian.com>
+
+	* www/inc/www.class.inc.php:
+	* www/index.php: remove old unused classes, start renaming
+	  cz>en variables
+
+	* TODO: prepare for the stylesheet stuff
+
+2003-10-26  Mark Finlay   <sisob@tuxfamilyDOTorg>
+
+	* www/inc/config.inc.php:
+	Remove the trailing / from $gallery_dir
+
+	* www/index.php: 
+	Implement using $gallery_dir preference
+
+	* www/galleries:
+	Directory Added; new location for galleries
+
+2003-10-26  Mark Finlay   <sisob@tuxfamilyDOTorg>
+
+	* www/inc/config.inc.php:
+	Add gallery directory preference; still need
+	to make index.php use this preference.	
+
+2003-10-25  Mark Finlay   <sisob@tuxfamilyDOTorg>
+
+	* www/index.php: 
+	Fix include() and require() statements so that they work
+	on more php configurations.
+
+2003-10-25  Mark Finlay   <sisob@tuxfamilyDOTorg>
+
+	* www/inc/config.inc.php:
+	Turn off EXIF retreival by default
+
+2003-10-25  Colin Marquardt  <colin@marquardt-home.de>
+
+	* www/inc/config.inc.php: Set version to "0.7-cvs".
+	Make format more customization friendly.
+
+	* www/inc/exif.inc.php: Quote filename given to exec in case there
+	are spaces in the path.
+
+	* www/inc/config.inc.php: Add examples for jhead.
+
+	* www/inc/exif.inc.php: Use trim() for comparisons, this makes it
+	work with jhead as EXIF extractor.
+
+2003-10-24  Colin Marquardt  <colin@marquardt-home.de>
+
+	* www/inc/www.class.inc.php: New class SortDir with SortedDir() 
+	and Read() functions. (patch by Markus Ulbricht, thanks)
+
+	* www/index.php: Use SortedDir() function. (patch by Markus Ulbricht)
+
+2003-10-24  Mark Finlay   <sisob@tuxfamilyDOTorg>
+
+	* www/index.php:
+	Fix navigation bar so it works with register_globals off
+
+2003-10-24  Mark Finlay   <sisob@tuxfamilyDOTorg>
+
+	* www/inc/header.inc.php:
+	Use Same header for all pages
+
+	* www/index.php:
+	Add heirarchy navigation bar
+
+2003-10-24  Mark Finlay   <sisob@tuxfamilyDOTorg>
+
+	* www/index.php:
+	Fix new sorting algorithm to show newest galleries first
+
+2003-10-24  Mark Finlay   <sisob@tuxfamilyDOTorg>
+
+	* www/index.php:
+	Add the ability to use date.txt in each gallery to specify
+	the date for that gallery.
+
+2003-10-23  Mark Finlay   <sisob@tuxfamilyDOTorg>
+
+	* www/inc/footer.inc.php:
+	* www/inc/header.inc.php:
+	ADDED; Make the header image a link to the root of the site
+	instead of the Original Home Page.
+	
+	* www/index.php:
+	Modified to use new header and footer include files;
+	Added comments to sepporate different pages
+
+2003-10-22  Colin Marquardt  <colin@marquardt-home.de>
+
+	* www/index.php:
+	* www/inc/config.inc.php:
+	* www/inc/exif.inc.php:
+	* www/inc/funkce.inc.php:
+	* www/inc/www.class.inc.php:
+	
+	Make it work with register_globals = Off in php.ini.
+
+2003-10-22  Colin Marquardt  <colin@marquardt-home.de>
+
+	* convert/Makefile (uninstall): New target.
+
+2003-10-21  Colin Marquardt  <colin@marquardt-home.de>
+
+	* convert/gdk-pixbuf-convert.c: #include
+	<gdk-pixbuf/gdk-pixbuf.h>, not local file.
+	(main): Add meaningful usage text.
+
+	* convert/Makefile: New file.
+
+2003-10-21  Mark Finlay   <sisob@tuxfamilyDOTorg>
+
+	Initial Checkin of Original to CVS
+
+2003-08-22  Jakub Steiner <jimmac@ximian.com>
+
+	* convert/webgallery-zenity.pl: modification of Tuomas' script.
+	  Uses gnome2's zenity for progress bars, no gtk-perl magic
+	* convert/gdk-pixbuf-convert.c: Larry Ewing's pixbuf-based
+	  scaler. This thing is fast!
+	
+2002-11-19  Jakub Steiner <jimmac@ximian.com>
+
+	* convert/imgconv:
+	* convert/webgallery.pl: go back to ImageMagcik. It keeps EXIF
+	  info while scaling, jpeg thumbnails
+	* www/index.php, www/inc/config.inc.php, www/inc/exif.inc.php: 
+	  - nicer index
+	  - jpeg thumbnail support
+	  - don't show EXIF mode switch when no EXIF info available
+	  - fix portrait thumbnail scaling (should work fo most aspect
+		 ratios now)
+	  - previous/next image thumbnails (in image mode)
+	  - Mozilla's link navigation (First, Previous, Next, Last, Top)
+	* www/left.png, right.png, top.png, plus.png, minus.png: new icons (from
+     gorilla)
+	* logo.xcf.bz2, www/logo.png, www/logo-mini.png: pretty logo
+
+2002-04-01  Jakub Steiner <jimmac@ximian.com>
+
+	* convert/imgconv:
+	* convert/webgallery.pl: use netpbm instead of ImageMagick;
+     imgconv now uses the same subdir as webgallery.pl
+
+	* www/index.php, www/inc/config.inc.php: portrait thumbnails are now the 
+     same height as the landscape ones. Also incorporated suggestion from 
+	  Eduardo Pérez <100018135@alumnos.uc3m.es> to support ISO 8601 
+	  date format instead of the US format.
+
+     And last but not least the imgconv has a commented-out line to
+     tar up or zip the HQ or MQ images.  index.php links to those in
+     the thumbnail view if you have them uploaded. The minithumbnail
+     view also has a small floppy icon (zip.png) for the HQ version.
+
+
+2001-10-27  Jakub Steiner <jimmac@ximian.com>
+
+	* www/inc/config.inc.php:
+	* www/inc/exif.inc.php: php4 exif handling (untested); also added
+	  config option to have fixed thumbnails (looks better on
+	  portrait photos)
+	* convert/webgallery.pl: use nautilus metafile to get comments
+
+2001-10-16  Jakub Steiner <jimmac@ximian.com>
+
+	* www/index.php: mini thumbnails
+	* www/inc/exif.inc.php: EXIF stuff (using Metacam), check
+	  REQUIREMENTS
+
+2001-04-14  Jakub Steiner <jimmac@ximian.com>
+
+	* REQUIREMENTS: Imagemagick, perl, gtk-perl, bash  ;)
+	* convert/webgallery.pl: Tigert's Nautilus web-gallery
+	script for Nautilus. It simply rocks!
+	* *.png: I accidentaly left the gif images in the
+	distribution
+	* index.php: check for mq and hq dirs before creating a link 
+
+	 
+16.10.2000      - few configuration addditions
+                - dropped nasty GIF format for the navigation
+                  (1bit mask is screwed under NN4, but its CSS support
+                  is so crap, so that the default theme is unusable for it)
+                  also imgconv is using png fro thumbnails (64 colors should
+                  be enough for everyone (tm))
+15.10.2000      - first public release
