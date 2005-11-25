@@ -1,0 +1,141 @@
+<!--
+   body {
+      <?php if ($this->background) echo "background-image: url('" . $this->background . "');\n";?>
+      background-color: <?php echo $this->bgcolor?>;
+      font-family: <?php echo $this->font?>;
+      font-size: <?php echo $this->fontsize?>;
+      color: <?php echo $this->textcol?>;
+   }
+
+   a:link {
+      color: <?php echo $this->link?>;
+   }
+
+   a:visited {
+      color: <?php echo $this->vlink?>;
+   }
+
+   a:active {
+      color: <?php echo $this->alink?>;
+   }
+
+   a:hover {
+      color: <?php echo $this->hover?>;
+   }
+
+   td {
+      font-family: <?php echo $this->font?>;
+      font-size: <?php echo $this->fontsize?>;
+   }
+
+   input {
+      font-family: <?php echo $this->font?>;
+      font-size: <?php echo $this->fontsize?>;
+   }
+   .navigation {
+      color: white;
+      background-color: #808080;
+      padding-top: 2px;
+      padding-bottom: 3px;
+      padding-left: 4px;
+      padding-right: 4px;
+   }
+
+   p.exif {
+      font-size: 9px;
+   }
+
+   p.navigation a {
+      color: #f0f0f0;
+      font-weight: bold;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      border: 0px;
+      text-align: left;
+   }
+
+   p.copyright {
+      clear: both;
+      padding-top: 4ex;
+      font-size: 9px;
+      text-align: left;
+      text-decoration: none;
+   }
+
+   h1 {
+      letter-spacing: .5em;
+   }
+
+   img {
+      /* makes really interesting stuff on nn4 ;) 
+      display: inline; */
+      margin: 2px;
+      border-top: solid black 1px;
+      border-bottom: solid black 1px;
+      border-left: dotted #808080 1px;
+      border-right: dotted #808080 1px;
+   }
+
+   .navigation img, div.title img {
+      border: 0px;
+      margin: 0px;
+      text-align: left;
+   }
+
+   div.title {
+      font-size: 16pt;
+      font-weight: bold;
+      letter-spacing: .5em;
+   }
+
+   div.title a {
+      text-decoration: none;
+   }
+   
+   p.image img {
+      /* margin-left: 10px; */
+      border: 0px;
+      margin: 0px;
+      text-align: center;
+      /*
+      border-bottom: 0px;
+      margin-bottom: 0px;
+      */
+   }
+   
+   p.comment {
+      font-size: 10px;
+      text-align: justify;
+      color: #606060;
+      width: 640px;
+      /* margin-left: 130px; */
+   }
+
+   span {
+      color: black;
+      font-weight: bold;
+   }
+
+   img.thumb {
+      border: 1px black solid;
+      margin-top: 2px;
+      margin-bottom: 2px;
+   }
+
+   a:hover img.thumb {
+      border: 1px white solid;
+   }
+
+   div.year {
+      float: left;
+      margin: 2px 1em;
+   }
+
+   div.year p {
+      margin: 2px 2em;
+   }
+
+   div.year h4 {
+      margin: 1em 1em 2px 1em;
+   }
+-->

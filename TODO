@@ -1,0 +1,7 @@
+- editable image comments (in php, not using nautilus metadata as ATM)
+- mysql logging (how many people seen particular picture, rating etc) / optional
+- default setting for quality (LQ/MQ/HQ)
+
+
+Jimmac: * make an XHTML document with external CSS stylesheet(s)
+	* get rid of czech comments and variable names

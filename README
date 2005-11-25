@@ -1,0 +1,28 @@
+This package includes two separate applications. In the www dir, there is the
+PHP frontend app, the convert dir includes a simple (too simple i guess) script
+that converts your wildcard of images into three subdirs in the current
+directory. You can easily create and upload all images using:
+
+   mkdir temp
+   cd $_
+   /path/to/imgconv *.png *.gif *.{jpeg,jpg}
+   scp -rp ./web-gallery me@my_server:web_dir/gallery_name
+
+and that's it.
+
+Tuomas Kuosmannen (tigert@gimp.org) has created a Nautilus script to create
+"original" galleries (check the REQUIREMENTS file). Just copy the
+convert/webgallery.pl file to ~/.gnome2/nautilus-scripts and make sure it's got
+the execute bit set.
+
+# UPDATE
+
+   Apart from using netpbm package (http://sourceforge.net/projects/netpbm/) for
+   scaling images, the new webgallery-zenity.pl script uses Larry Ewing's
+   gdk-pixbuf-based scaler. See REQUIREMENTS for details.
+
+   Latest versions of the tools can be found at
+   http://jimmac.musichall.cz/original.php3
+
+--
+Jakub 'Jimmac' Steiner <jimmac@linux.com>
