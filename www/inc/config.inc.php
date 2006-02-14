@@ -31,7 +31,6 @@ $scnamegallery = "Photo Gallery Index";
 # ===========================================================================
 # albums to show
    $yearsince = 1999;
-   $yearto = 2005;
 #images FIXME - this is stylesheet's job
    $img["left"] = "left.png";
    $img["right"] = "right.png";

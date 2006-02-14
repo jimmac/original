@@ -106,6 +106,7 @@ if (!$galerie) {
 
 
 	 $thisyear = 0;
+	 if (!$yearto) $yearto = date("Y");
    for ($i = $yearto; $i >= $yearsince; $i--) {
       for ($thismonth=12; $thismonth>0; $thismonth--) { // go year by year, month by month
 																												// down
