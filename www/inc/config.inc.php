@@ -1,8 +1,12 @@
 <?php
 #base dirname
    //dirname("__FILE__/..")
-   eregi("^(.*)/[^/]*$", $ScriptFileName, $x);
-   $root = $x[1];
+	$ThisScript=preg_replace('/\?.*$/', '', $_SERVER['REQUEST_URI']);
+	$ScriptFileName=$_SERVER['SCRIPT_FILENAME'];
+	$HostName=$_SERVER['SERVER_NAME']; 
+	$ThisUrl = $_SERVER['REQUEST_URI'];
+  eregi("^(.*)/[^/]*$", $ScriptFileName, $x);
+  $root = $x[1];
 # ===========================================================================
 # dir index
 	 $sortinmonth = 0;// 1 - alphabetically
@@ -46,7 +50,7 @@ $scnamegallery = "Photo Gallery Index";
    $app["name"] = "Original"; // opensource remote image gallery,
                               // initialy not as lovely 
    $app["url"] = "http://jimmac.musichall.cz/original.php3";
-   $app["version"] = "0.11";
+   $app["version"] = "0.12pre";
 # ===========================================================================
 # EXIF metadata app path (helper app for php3 and older php4)
 # uncomment the method you want to use if you want EXIF data reported
@@ -95,15 +99,16 @@ $scnamegallery = "Photo Gallery Index";
 # eg. it can be "../galleries" to use a galleries dir above the original dir.
   $gallery_dir="../galleries";
 
+#Enable this to access extended tracking functionality
+#depends on sqlite
+$have_sqlite = 1;
+
 # This controls wheather web visitors will be able to post
 # comments to images
 $comments = 1;
 
 # Access Log/Counter
 # $log_access = 0; // no access logging
-# $log_access = 1; // simple counter
-# $log_access = 2; // detailed log FIXME: TODO (not sure about doing this, as 
-									 // it duplicates server's access log and tends to grow large
 $log_access = 1; 
 
 #css styles

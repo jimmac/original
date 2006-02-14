@@ -188,7 +188,150 @@ class C_www {
 			echo "</div>\n";
    }
 
-	   
+	
+	function navigation ($gallery, $snapshot, $image) {
+   global $gallery_dir, $root, $ThisScript, $textnav, $img, 
+          $show_thumbs, $exif_style, $PNthumbScale;
+
+   $next = $snapshot + 1;
+   $prev = $snapshot - 1;
+
+   if (!$image) { // this will render a navigation bar - max 3 buttons
+      echo "\n<div class=\"navbuttons\">\n";
+      echo "<div class=\"navbuttonsshell\">\n";
+      if ($snapshot > 1) { //previous 
+         echo "<a id=\"previcon\" href=\"$ThisScript?galerie=$gallery&amp;photo=$prev";
+         echo "&amp;exif_style=$exif_style&amp;show_thumbs=$show_thumbs\"";
+				 echo " accesskey=\"p\">";
+         echo "&lt; <span class=\"accesskey\">P</span>revious</a>\n";
+      }
+      echo "&nbsp;";
+      if (is_file("$gallery_dir/$gallery/lq/img-$next.jpg")) { //next
+         echo "<a id=\"nexticon\" href=\"$ThisScript?galerie=$gallery&amp;photo=$next";
+         echo "&amp;exif_style=$exif_style&amp;show_thumbs=$show_thumbs\"";
+				 echo " accesskey=\"n\">";
+         echo "<span class=\"accesskey\">N</span>ext &gt;</a>\n";
+      }
+      echo "</div>\n</div>\n";
+   } elseif ($image=="prev") { //previous thumbnail
+      if ($snapshot > 1) { //previous 
+         echo "<div class=\"prevthumb\">";
+         echo "<a href=\"$ThisScript?galerie=$gallery&amp;photo=$prev";
+         echo "&amp;exif_style=$exif_style&amp;show_thumbs=$show_thumbs\">";
+         if (file_exists("$gallery_dir/$gallery/thumbs/img-$prev.png")) {
+            $Pthumb = "$gallery_dir/$gallery/thumbs/img-$prev.png";
+         } else {
+            $Pthumb = "$gallery_dir/$gallery/thumbs/img-$prev.jpg";
+         }
+         $v = getimagesize("$root/$Pthumb");
+         echo "<img alt=\"Previous\" src=\"";
+         echo $Pthumb . "\" width=\"" . round($v[0]/$PNthumbScale);
+         echo "\" height=\"" . round($v[1]/$PNthumbScale) . "\" />";
+         echo "<br />" . __('Previous');
+         echo "</a></div>\n";
+      }
+   } else { //next thumbnail
+      if (is_file("$gallery_dir/$gallery/lq/img-$next.jpg")) {
+         echo "<div class=\"nextthumb\">";
+         echo "<a href=\"$ThisScript?galerie=$gallery&amp;photo=$next";
+         echo "&amp;exif_style=$exif_style&amp;show_thumbs=$show_thumbs\">";
+         if (file_exists("$gallery_dir/$gallery/thumbs/img-$next.png")) {
+            $Nthumb = "$gallery_dir/$gallery/thumbs/img-$next.png";
+         } else {
+            $Nthumb = "$gallery_dir/$gallery/thumbs/img-$next.jpg";
+         }
+         $v = getimagesize("$root/$Nthumb");
+         echo "<img alt=\"Next\" src=\"";
+         echo $Nthumb . "\" width=\"" . round($v[0]/$PNthumbScale);
+         echo "\" height=\"" . round($v[1]/$PNthumbScale) . "\" />";
+         //echo "<br /><span class=\"accesskey\">N</span>ext";
+         echo "<br />" . __('Next') ;	 
+         echo "</a></div>\n";
+      }
+   }
+	}
+
+	function user_comments($photo) {
+		global $root, $gallery_dir, $galerie, $comments, $picture;
+
+   if ($comments) {
+		 if (is_writable("$root/$gallery_dir/$galerie/comments")) { // needs perms
+			 require("inc/comment_form.inc.php");
+
+			 if ($picture->comments) {
+					print "<div class=\"user_comment\">";
+					print $picture->comments;
+					print "</div>";
+			 }
+		 } else {
+			 print "<!-- WARNING: comment dir not writable -->\n";
+		 }
+   }
+	}
+
+	function process_comment_form() { // processing of the user comment data
+		global $comments, $root, $gallery_dir, $galerie, $snimek;
+		
+		if($comments && @$_POST["commentdata"]) {
+				$username = @$_COOKIE["username"];
+				$comment_name = @$_POST["commentname"];
+				$save_comment_name = @$_POST["savecommentname"];
+				$comment_data = @$_POST["commentdata"];
+				$comment_kolacek = @$_POST["commentkolacek"];
+				$comment_spamcheck = @$_POST["commentspamcheck"];
+
+				#check for HTML tags
+				
+				$comment_name = stripslashes(strip_tags($comment_name));
+				$allowedTags = '<a><b><i><ul><li><blockquote><br>';
+				$comment_data = stripslashes(strip_tags($comment_data,$allowedTags));
+				// thanks google: 
+				// http://www.google.com/googleblog/2005/01/preventing-comment-spam.html
+				$comment_data = eregi_replace("<a ","<a rel=\"nofollow\" ",$comment_data);
+
+				#further comment spam
+				$comment_blacklist = array("pharmacy", "poker", "Viagra");
+
+				foreach($comment_blacklist as $blackword) {
+					$check = addslashes($blackword);
+					if (eregi($check,$comment_data)) {
+						#write error message
+						$this->error( __('No comment spam'), __('Your comment includes blacklisted word') . __('No comment spam') );
+						$this->footer();
+						exit; //stop everything
+					}
+				}
+
+				if ($comment_kolacek!=md5($comment_spamcheck)) {
+						$this->error( __('No comment spam'), __('You ve written the check number wrong' ) );
+						$this->footer();
+						exit; //stop everything
+				}
+
+				if (!$comment_name) {
+					$comment_name = $_COOKIE["username"];
+				}
+				
+				// ok so we got a comment
+				if ($comment_name && $save_comment_name) {
+				// save out name in a cookie
+					if (!setcookie("username","$comment_name", 
+											mktime(0, 0, 0, 12, 30, 2030))) {
+						print __('Could not set name cookie!');
+						exit;
+					}
+				}
+
+				// create a user_comment file if not existant or append to it
+				if (!$picture) {
+				  require_once("$root/inc/photo.class.inc.php");
+					$path = "$gallery_dir/$galerie/lq";
+					$file = "$path/img-$snimek.jpg";
+					$picture = new C_photo($file, $snimek);
+				}
+				$picture->addcomment($comment_name, $comment_data);
+		}
+	}
 }
 
 # return dirs sorted

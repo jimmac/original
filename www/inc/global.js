@@ -65,15 +65,12 @@ function toggle_comment() {
     }
 }
 
-function toggle_exif() {
-	var exif_table = document.getElementById('exif_table');
-	var exif_line = document.getElementById('exif_line');
-    if(exif_table.style.display == 'none') {
-			exif_table.style.display = 'block';
-			exif_line.style.display = 'none';
+function toggle_div(classname) {
+	var div = document.getElementById(classname);
+    if(div.style.display == 'none') {
+			div.style.display = 'block';
 		} else {
-			exif_table.style.display = 'none';
-			exif_line.style.display = 'block';
+			div.style.display = 'none';
 		}
 }
 

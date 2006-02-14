@@ -99,7 +99,7 @@ if ($exif_prog=="php4") {
 			}
 			echo "<tr>\n";
 			echo "<td></td>";
-			echo "<td><a href=\"javascript:toggle_exif()\">" . __("Less info");
+			echo "<td><a href=\"javascript:toggle_div('exif_table');toggle_div('exif_line');\">" . __("Less info");
 			echo "</a></td>";
 			echo "</tr>\n";
 			echo "</table>\n";
@@ -136,7 +136,7 @@ if ($exif_prog=="php4") {
 				 }
 			}
 
-			echo "<a href=\"javascript:toggle_exif()\">" . __("More info");
+			echo "<a href=\"javascript:toggle_div('exif_table');toggle_div('exif_line');\">" . __("More info");
 			echo "</a></p>\n";
 			echo "</div>\n";
  		}
