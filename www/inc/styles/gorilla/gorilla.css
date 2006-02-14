@@ -287,15 +287,19 @@ div#mqhq {
 }
 
 div.stylenavbar {
-   position:relative;
-   /*
-   left: 0px;
-   right: auto;
-   top:auto;
-   bottom:0px;
-   */
-   margin: 2px;
+   position:absolute;
+	 bottom: 0px;
+	 right: 0px;
    font-size: 9px; 
+   padding: 4px;
+	 opacity: 0.4;
+}
+
+div.stylenavbar ul {
+	list-style-type: none;
+	margin-left: 0px;
+	padding-left: 0px;
+	
 }
 
 /* Formatting of the user comments */

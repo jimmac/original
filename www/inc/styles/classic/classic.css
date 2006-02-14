@@ -304,11 +304,22 @@ div#mqhq a:hover {
 }
 
 div.stylenavbar {
-   position:relative;
+   position: fixed;
+	 bottom: 0px;
+	 right: 0px;
    font-size: 9px; 
-   margin: 4px 0px;
-   padding-bottom: 0px;
+   padding: 4px;
+	 opacity: 0.4;
 }
+
+div.stylenavbar ul {
+	list-style-type: none;
+	margin-left: 0px;
+	padding-left: 0px;
+	
+}
+
+
 
 /* Formatting of the user comments */
 /* 

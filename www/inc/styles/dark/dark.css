@@ -428,12 +428,19 @@ div#mqhq a:hover {
 }
 
 div.stylenavbar {
-   position:absolute;
-	 top: 0px;
+   position: fixed;
+	 bottom: 0px;
 	 right: 0px;
    font-size: 9px; 
    padding: 4px;
 	 opacity: 0.4;
+}
+
+div.stylenavbar ul {
+	list-style-type: none;
+	margin-left: 0px;
+	padding-left: 0px;
+	
 }
 
 p.archives {
