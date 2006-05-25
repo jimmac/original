@@ -100,7 +100,7 @@ $scnamegallery = "Photo Gallery Index";
 
 #Enable this to access extended tracking functionality
 #depends on sqlite
-$have_sqlite = 1;
+$have_sqlite = 0;
 
 # This controls wheather web visitors will be able to post
 # comments to images

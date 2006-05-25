@@ -243,7 +243,7 @@ if (!$galerie) {
 				 if ($class) print " class=\"$class\"";
 				 print ">";
          print "<img ";
-         if ($thumbsize) {
+         if (isset($thumbsize)) {
             print "width=\"120\" height=\"80\" ";
          } else {
             // scale portraits to 80 height

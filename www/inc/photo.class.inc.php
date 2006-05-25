@@ -50,8 +50,8 @@ class C_photo {
 				//and add number, album, caption and views.
 				$sql = "insert into photo (name, caption, counter, number, album)";
 				$sql .= " values (";
-				$sql .= "\"" . $this->name . "\", ";
-				$sql .= "\"" . $this->caption . "\", ";
+				$sql .= "\"" . sqlite_escape_string($this->name) . "\", ";
+				$sql .= "\"" . sqlite_escape_string(strtr($this->caption,"\"","'")) . "\", ";
 				$sql .= $this->counter . ", ";
 				$sql .= $this->number . ", ";
 				$sql .= "\"" . $this->album . "\"";
@@ -189,7 +189,7 @@ class C_photo {
 		 //fallback to filesystem
 		 if (is_writable("$root/$gallery_dir/$galerie/comments")) { // needs perms
 			 $log = "$root/$gallery_dir/$galerie/comments/log_". $this->number .".txt";
-			 if (!is_writable($log)) {
+			 if (file_exists($log) && !is_writable($log)) {
 				 print "\n\n\n<!-- cannot open $log. Check permissions.";
 				 print "\nAborting counter write -->\n";
 				 return 0;
