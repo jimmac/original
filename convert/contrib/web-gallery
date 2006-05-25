@@ -20,20 +20,16 @@ dir=./web-gallery
 files=$(echo $@ | sed 's/ /\n/g' | sort)
 numfiles=$#
 
+
 if [ -z $convertor ]; then
-    zenity --title $name --error --error-text "convert not found !"
+    zenity --title $name --error --text "convert not found !"
     exit 1
 fi
 
 if [ $numfiles == 0 ]; then
-    zenity --title $name  --error --error-text "No input files !"
+    zenity --title $name  --error --text "No input files !"
     exit 1
 fi
-
-#progressbar stuff
-steps=5
-increment=`expr 100 / \( $numfiles \* $steps \) `
-progress=0
 
 
 mkdir -p $dir/thumbs
@@ -48,6 +44,9 @@ echo "<Files info.txt>" > $dir/.htaccess
 echo "        deny from all" >> $dir/.htaccess
 echo "</Files>" >> $dir/.htaccess
 
+# stuf for the progressbar
+step=5
+max=`expr $step \* $numfiles + $step`
 
 i=1
 
@@ -59,34 +58,35 @@ for imagefile in $files
   echo "#$process : thumbnail"
   $convertor -geometry 120x120 -modulate 100,140,100 -unsharp 1x20 \
       -quality 60 $extra_opts $imagefile $dir/thumbs/img-$i.jpg
-  progress=`expr $progress + $increment`
+  progress=`expr \( $i \* $step + 1 \) \* 100 / $max`
+
   echo $progress
 
       # LQ
   echo "#$process : lq"
   $convertor -geometry 640x480 -modulate 100,130,100 -unsharp 1x5 \
       -quality 90 $imagefile $dir/lq/img-$i.jpg
-  progress=`expr $progress + $increment`
+  progress=`expr \( $i \* $step + 2 \) \* 100 / $max`
   echo $progress
 
       # MQ
   echo "#$process : mq"
   $convertor -geometry 1024x768 -modulate 100,130,100 -unsharp 1x5 \
       -quality 80 $imagefile $dir/mq/img-$i.jpg
-  progress=`expr $progress + $increment`
+  progress=`expr \( $i \* $step + 3 \) \* 100 / $max`
   echo $progress
 
       # HQ
   echo "#$process : hq"
   cp $imagefile $dir/hq/img-$i.jpg
-  progress=`expr $progress + $increment`
+  progress=`expr \( $i \* $step + 4 \) \* 100 / $max`
   echo $progress
 
       # Comments
   echo "#$process : comments"
       # template for comment
-  echo "<span>Photo $i</span>" > $dir/comments/$i.txt
-  progress=`expr $progress + $increment`
+  echo "<span>Photo $i</span>" > $dir/comments/$i.txt
+  progress=`expr \( $i \* $step + 5 \) \* 100 / $max`
   echo $progress
 
   i=`expr $i + 1`
@@ -98,8 +98,9 @@ done | zenity --progress --title="Scaling images, please wait..." --auto-close
     echo "1"
     echo "#Making archives"
     zip -R $dir/zip/mq.zip  web-gallery/mq/*.jpg
+    echo "50"
     zip -R $dir/zip/hq.zip web-gallery/hq/*.jpg
     echo "100"
 ) | zenity --progress --pulsate --auto-close --title="Zipping images"
 
-zenity --title $name --info --info-text "Your <b>O.R.I.G.I.N.A.L</b> gallery is ready."
+zenity --title $name --info --text "Your <b>O.R.I.G.I.N.A.L</b> gallery is ready."
