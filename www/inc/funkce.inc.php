@@ -58,9 +58,9 @@ function readInfo ($infofile, $file) {
 				$info_array["date"])) {
 				// remain compatible - DD.MM.YYYY
 				list($day,$month,$year) = split("\.", $info_array["date"]);
-				rtrim($year);
-				rtrim($month);
-				rtrim($day);
+				$year = rtrim($year);
+				$month = rtrim($month);
+				$day = rtrim($day);
 				$info_array["date"] = "$year-$month-$day"; //make it US date
 			}
 			// US date format at this point
