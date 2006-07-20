@@ -205,8 +205,8 @@ done
 # zip stuff
 if [ $zip -gt 0 ]; then
     $verbose "archiving"
-    [ $mq ] && zip -R $dir/zip/mq.zip  web-gallery/mq/*.jpg
-    [ $hq ] && zip -R $dir/zip/hq.zip web-gallery/hq/*.jpg
+    [ $mq ] && zip -R $dir/zip/mq.zip  $dir/mq/*.jpg
+    [ $hq ] && zip -R $dir/zip/hq.zip  $dir/hq/*.jpg
 fi
 
 #info.txt

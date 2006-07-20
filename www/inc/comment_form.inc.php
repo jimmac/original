@@ -17,7 +17,7 @@ echo "<div id=\"comment_block\">\n";
 	<div id="comment_form" style="display: none;">
 <?php
 $this->form_start($ThisUrl, "post", NULL);
-$this->input("text", "commentname", $username, __('Name:'), NULL, _('Enter your name.') );
+$this->input("text", "commentname", $username, __('Name:'), NULL, __('Enter your name.') );
 $this->input("checkbox", "savecommentname", "1", __('Remember Name:'), "yes", 
              __('Should the browser remember your name?'));
 $magic_number = random_digits(4);
