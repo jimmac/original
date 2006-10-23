@@ -1,0 +1,8 @@
+/*
+ Some workarounds for IE6/Windows
+*/
+
+html img#preview { /* should only match on IE; how pathetic */
+	margin-left: -320px;
+	left: 50%;
+}

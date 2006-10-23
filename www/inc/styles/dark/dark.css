@@ -282,11 +282,6 @@ img#preview {
    margin-right: auto;
 }
 
-* html img#preview { /* should only match on IE; how pathetic */
-	margin-left: -320px;
-	left: 50%;
-}
-
 div.comment {
    margin: 10px 0px 6px 0px;
    color: #babdb6;

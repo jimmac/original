@@ -28,6 +28,8 @@ class C_www {
 			#IE hacks
 			echo "<!-- This makes IE6 suck less (a bit) -->\n";
 			echo "<!--[if lt IE 7]>\n";
+			echo "<link rel=\"stylesheet\" type=\"text/css\" ";
+			echo "href=\"inc/styles/ie6workarounds.css\" />\n";
 			echo "<script src=\"inc/styles/ie7/ie7-standard.js\" type=\"text/javascript\">\n";
 			echo "</script>\n";
 			echo "<![endif]-->\n";
