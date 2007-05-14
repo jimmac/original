@@ -1,12 +1,6 @@
 <?php
 #base dirname
-   //dirname("__FILE__/..")
-	$ThisScript=preg_replace('/\?.*$/', '', $_SERVER['REQUEST_URI']);
-	$ScriptFileName=$_SERVER['SCRIPT_FILENAME'];
-	$HostName=$_SERVER['SERVER_NAME']; 
-	$ThisUrl = $_SERVER['REQUEST_URI'];
-  eregi("^(.*)/[^/]*$", $ScriptFileName, $x);
-  $root = $x[1];
+  $root = dirname(__FILE__);
 # ===========================================================================
 # dir index
 	 $sortinmonth = 0;// 1 - alphabetically
@@ -96,7 +90,7 @@ $scnamegallery = "Photo Gallery Index";
 ## Gallery Directory
 # This is a path relative to the directory where original is installed
 # eg. it can be "../galleries" to use a galleries dir above the original dir.
-  $gallery_dir="../galleries";
+  $gallery_dir="galleries";
 
 #Enable this to access extended tracking functionality
 #depends on sqlite
