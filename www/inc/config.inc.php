@@ -1,6 +1,6 @@
 <?php
 #base dirname
-  $root = dirname(__FILE__);
+  $root = dirname(dirname(__FILE__) . "../");
 # ===========================================================================
 # dir index
 	 $sortinmonth = 0;// 1 - alphabetically
