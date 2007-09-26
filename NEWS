@@ -1,3 +1,9 @@
+Version 0.11.3
+--------------
+
+Work around a possible exec() exploit by removing functionality :) You cannot
+use jhead or metacamfor exif anymore.
+
 Version 0.11
 ------------
 
