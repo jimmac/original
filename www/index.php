@@ -36,13 +36,6 @@ $cmnt='';
 if (isset($_GET["cmnt"])) $cmnt=$_GET["cmnt"];
 $show_thumbs='';
 if (isset($_GET["show_thumbs"])) $show_thumbs=$_GET["show_thumbs"];
-$exif_style='';
-if (isset($_GET["exif_style"])) $exif_style=$_GET["exif_style"];
-
-/*
-if(!$exif_style) {
-	$exif_style="descriptive";
-} */
 
 $page = new C_www;
 //default colors
@@ -329,7 +322,7 @@ if (!$galerie) {
    if ($show_thumbs) {
       print "\n<!--mini thumbnail roll-->\n<div class=\"thumbroll\">";
       print "<a id=\"minus\" href=\"$ThisScript?galerie=$galerie&amp;photo=$snimek";
-      print "&amp;exif_style=$exif_style\">";
+      print "\">";
       print "</a>\n";
       print " : \n";
       while ($thumbfile = $imgfiles->read()) {
@@ -367,7 +360,7 @@ if (!$galerie) {
       // show the popup button
       print "\n<!--mini thumbnail popup-->\n<div class=\"thumbroll\">";
       print "<a id=\"plus\" href=\"$ThisScript?galerie=$galerie&amp;photo=$snimek";
-      print "&amp;exif_style=$exif_style&amp;show_thumbs=yes\"";
+      print "&amp;show_thumbs=yes\"";
 			print " title=\"" . __('Show Thumbnail Navigation') . "\">";
       print "</a>\n";
       print "</div>\n";
@@ -382,7 +375,7 @@ if (!$galerie) {
 
 
 
-   if ($exif_prog) require("$root/inc/exif.inc.php"); 
+   require("$root/inc/exif.inc.php"); 
 	 /* Image comment
 	 		really poor naming here, it is caption.
 	 */

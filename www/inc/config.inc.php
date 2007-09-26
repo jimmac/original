@@ -44,12 +44,6 @@ $scnamegallery = "Photo Gallery Index";
                               // initialy not as lovely 
    $app["url"] = "http://jimmac.musichall.cz/original.php3";
    $app["version"] = "0.12pre";
-# ===========================================================================
-# EXIF metadata app path (helper app for php3 and older php4)
-# uncomment the method you want to use if you want EXIF data reported
-# ---------------------------------------------------------------------------
-## use internal function of PHP 4:
-   $exif_prog = "php4";
    $exif_show = array("DateTime"=>__("Time Taken"), 
 	 						"Make"=>__("Camera Manufacturer"), 
 	 						"Model"=>__("Camera Model"), 
@@ -59,33 +53,6 @@ $scnamegallery = "Photo Gallery Index";
 							"ExposureTime"=>__("Time of Exposure"), 
 							"ISOSpeedRatings"=>__("Film/Chip Sensitivity"),
 							"Flash"=>__("Flash"));
-# ---------------------------------------------------------------------------
-## use metacam (give absolute path to the binary on the server):
-#   $exif_prog = "/usr/local/bin/metacam";
-## what EXIF data to show (if unset, all will be shown)
-## some example fields for metacam:
-#   $exif_show = array("Image Capture Date", "Make", "Model",
-#                "Exposure Program", "Exposure Mode",
-#                "Focal Length", "Exposure Time",
-#                "Aperture Value", "ISO Speed Rating", "White Balance",
-#                "Flash", "Scene Capture Type",
-#                "Metering Mode", "Max Aperture Value", "Shutter Speed Value"
-#                );
-# ---------------------------------------------------------------------------
-## use jhead (give absolute path to the binary on the server):
-#  $exif_prog = "/usr/local/bin/jhead";
-## what EXIF data to show (if unset, all will be shown)
-## some example fields for jhead:
-# $exif_show = array(
-#                    "Date/Time",
-#                    "Camera make",
-#                    "Camera model",
-#                    "Focal length",
-#                    "Exposure time",
-#                    "Aperture Value",
-#                    "ISO equiv.",
-#                    "Exposure",
-#                  );
 # ===========================================================================
 ## Gallery Directory
 # This is a path relative to the directory where original is installed
