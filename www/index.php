@@ -375,7 +375,7 @@ if (!$galerie) {
 
 
 
-   if ($exif) require("$root/inc/exif.inc.php"); 
+   if (function_exists(exif_read_data)) require("$root/inc/exif.inc.php"); 
 	 /* Image comment
 	 		really poor naming here, it is caption.
 	 */
