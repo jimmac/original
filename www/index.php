@@ -375,7 +375,7 @@ if (!$galerie) {
 
 
 
-   require("$root/inc/exif.inc.php"); 
+   if ($exif) require("$root/inc/exif.inc.php"); 
 	 /* Image comment
 	 		really poor naming here, it is caption.
 	 */

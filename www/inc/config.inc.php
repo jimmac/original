@@ -44,6 +44,8 @@ $scnamegallery = "Photo Gallery Index";
                               // initialy not as lovely 
    $app["url"] = "http://jimmac.musichall.cz/original.php3";
    $app["version"] = "0.12pre";
+	 // unset if you don't have EXIF in your PHP
+	 $exif = 1;
    $exif_show = array("DateTime"=>__("Time Taken"), 
 	 						"Make"=>__("Camera Manufacturer"), 
 	 						"Model"=>__("Camera Model"), 
