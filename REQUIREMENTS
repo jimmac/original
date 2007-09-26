@@ -39,6 +39,4 @@ You can get Imagemagick at http://www.imagemagick.org/.
 
 If you wan't to have advanced EXIF information for your photos, make sure you
 use a recent ImageMagick so that convert doesn't throw away this info when
-scaling down. Also grab Metacam
-(http://www.cheeseplant.org/~daniel/pages/metacam.html) and configure the path
-to it in inc/config.inc.php.
+scaling down. You also need EXIF support in your PHP.
