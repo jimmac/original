@@ -11,6 +11,7 @@
 #default options
 dir=./web-gallery
 zip=0
+rotate=0
 mq=0
 hq=0
 interactive=0
@@ -26,15 +27,16 @@ gal_pass=""
 
 # convert options
 convertor=`which convert`
+jhead=`which jhead`
 extra_ops="-strip"
 
 # This script
 name=`basename $0`
 
 # getopt stuff
-shortopts="a:hHin:d:D:Mqo:Z"
+shortopts="a:hHin:d:D:Mqo:Zr"
 longopts="author:quiet,help,interactive,name:,date:,description:,\
-mq,hq,output:,archive"
+mq,hq,output:,archive,rotate"
 
 
 
@@ -52,10 +54,11 @@ Convert FILEs
   -n, --name NAME            set gallery's name
   -d, --date DATE            set date to DATE
   -D, --description DESC     description
+  -r, --rotate               automatically rotate image based on EXIF
   -q, --quiet                don't say anything
   -h, --help                 display this help and exit
 
-FILEs must be JPEG  or PNG. if DIR is not given, the
+FILEs must be JPG, JPEG or PNG. if DIR is not given, the
 gallery will be created in $dir.
 
 EOF
@@ -67,7 +70,7 @@ good_file() {
 
     ftype=`file -b "$1" | cut -d " " -f 1`
 
-    if [ "$ftype" == "JPEG" ] || [ "$ftype" == "PNG" ]
+    if [ "$ftype" == "JPG" ] || [ "$ftype" == "JPEG" ] || [ "$ftype" == "PNG" ]
     then
 	return 0
     else
@@ -115,6 +118,9 @@ while true; do
 	-Z|--zip)
 	    zip=1 ; shift ;;
 
+	-r|--rotate)
+	    rotate=1 ; shift ;;
+
 	-q|--quiet)
 	    verbose=false ; shift ;;
 
@@ -131,6 +137,15 @@ while true; do
 	    echo "OOops.. getopt error !" ; echo $@ ; exit 1 ;;
     esac
 done
+
+
+
+# If we don't have JHead and we want to auto-rotate images, cry & exit
+if [ $rotate -gt 0 ] && [ -z $jhead ]; then
+    echo "jhead not found... Please install JHead."
+    exit 1
+fi
+
 
 
 # If no input files are given, display usage & exit
@@ -169,7 +184,7 @@ for imagefile in $files; do
 
     good_file "$imagefile"
     if [ $? != 0 ]; then
-	$verbose "$imagefile is not a JPEG or PNG file, skipped"
+	$verbose "$imagefile is not a JPG, JPEG or PNG file, skipped"
 	continue
     fi
 
@@ -201,6 +216,15 @@ for imagefile in $files; do
   i=`expr $i + 1`
   $verbose " done"
 done
+
+# auto-rotate stuff
+if [ $rotate -gt 0 ]; then
+    $verbose "rotating"
+    jhead -autorot $dir/thumbs/*.jpg
+    jhead -autorot $dir/lq/*.jpg
+    [ $mq ] && jhead -autorot $dir/mq/*.jpg
+    [ $hq ] && jhead -autorot $dir/hq/*.jpg
+fi
 
 # zip stuff
 if [ $zip -gt 0 ]; then
