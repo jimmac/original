@@ -16,8 +16,8 @@
 
 die "No files to convert" unless @ARGV;
 
-use Gtk;
-init Gtk;
+use Gtk2;
+init Gtk2;
 
 @files = sort(@ARGV);
 
@@ -52,22 +52,22 @@ sub make_gallery_fake {
 }
 
 
-$w = new Gtk::Window;
-$label = new Gtk::Label(' Web Gallery generation in progress... ');
-$pbar = new Gtk::ProgressBar;
-$vb = new Gtk::VBox(0, 0);
-$b = new Gtk::Button('Cancel');
+$w = new Gtk2::Window;
+$label = new Gtk2::Label(' Web Gallery generation in progress... ');
+$pbar = new Gtk2::ProgressBar;
+$vb = new Gtk2::VBox(0, 0);
+$b = new Gtk2::Button('Cancel');
 $w->add($vb);
 $vb->add($label);
 $vb->add($pbar);
 $vb->add($b);
 
-$b->signal_connect('clicked', sub {Gtk->exit(0)});
-$w->signal_connect('destroy', sub {Gtk->exit(0)});
+$b->signal_connect('clicked', sub {exit(1)});
+$w->signal_connect('destroy', sub {exit(1)});
 
 $w->show_all();
 $i = 0;
-$pbar->update($i);
+$pbar->set_fraction($i);
 
 @files = sort(@ARGV);
 $num_of_files = scalar @files;
@@ -84,49 +84,48 @@ close(METAXML);
 
 foreach $file (@files) {
 	 
-	 $pbar->update($progress);
-	 $pbar->set_show_text(1);
-	 $pbar->set_format_string("$i of $num_of_files");
+	 $pbar->set_fraction($progress);
+	 $pbar->set_text("$i / $num_of_files");
 	 $progress += $increment;
-	 while (Gtk->events_pending) {
-		  Gtk->main_iteration;
+	 while (Gtk2->events_pending) {
+		  Gtk2->main_iteration;
 	 }
 
 	 # do the stuff, collect error messages to a variable.
 	 #$reply=`convert -geometry 120x120 -colors 64 -dither $file $dir/thumbs/img-$i\.png 2>&1`;
 	 $reply=`convert -geometry 120x120 $file $dir/thumbs/img-$i\.jpg 2>&1`;
-    #$reply =`jpegtopnm $file | pnmscale -xysize 120 120 | ppmquant -floyd 16 | pnmtopng -interlace -compression 9 > $dir/thumbs/img-$i\.png 2>&1`;
+	 #$reply =`jpegtopnm $file | pnmscale -xysize 120 120 | ppmquant -floyd 16 | pnmtopng -interlace -compression 9 > $dir/thumbs/img-$i\.png 2>&1`;
 
-	 $pbar->update($progress);
+	 $pbar->set_fraction($progress);
 	 $progress += $increment;
-	 while (Gtk->events_pending) {
-		  Gtk->main_iteration;
+	 while (Gtk2->events_pending) {
+		  Gtk2->main_iteration;
 	 }
 
 	 $reply = $reply . `convert -geometry 640x640 $file $dir/lq/img-$i.jpg 2>&1`;
 	 #$reply = $reply . `jpegtopnm $file | pnmscale -xysize 640 640 | ppmtojpeg --quality 80 --progressive > $dir/lq/img-$i.jpg 2>&1`;
 
-	 $pbar->update($progress);
+	 $pbar->set_fraction($progress);
 	 $progress += $increment;
-	 while (Gtk->events_pending) {
-		  Gtk->main_iteration;
+	 while (Gtk2->events_pending) {
+		  Gtk2->main_iteration;
 	 }
 
 	 $reply = $reply . `convert -geometry 800x800 $file $dir/mq/img-$i.jpg 2>&1`;
 	 #$reply = $reply . `jpegtopnm $file | pnmscale -xysize 800 800 | ppmtojpeg --quality 80 --progressive > $dir/mq/img-$i.jpg 2>&1`;
 
-	 $pbar->update($progress);
+	 $pbar->set_fraction($progress);
 	 $progress += $increment;
-	 while (Gtk->events_pending) {
-		  Gtk->main_iteration;
+	 while (Gtk2->events_pending) {
+		  Gtk2->main_iteration;
 	 }
 
 	 $reply = $reply . `cp $file $dir/hq/img-$i.jpg 2>&1`;
 
-	 $pbar->update($progress);
+	 $pbar->set_fraction($progress);
 	 $progress += $increment;
-	 while (Gtk->events_pending) {
-	 	  Gtk->main_iteration;
+	 while (Gtk2->events_pending) {
+	 	  Gtk2->main_iteration;
 	 }
 	 
 	 # comment
