@@ -10,6 +10,7 @@
 #                                                                       #
 #  Hacked together by Tuomas Kuosmanen <tigert@ximian.com>              #
 #  Tweaked to use NetPBM by Jakub Steiner <jimmac@ximian.com>           #
+#  gtk2 port by Jan Girlich -- vollkorn freenet de                      #
 #  Released under the GPL license.                                      #
 #                                                                       #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
